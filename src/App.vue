@@ -1,32 +1,42 @@
-<script setup>
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
-import HelloWorld from '~/components/HelloWorld.vue'
+<script lang="ts" setup>
 </script>
 
 <template>
-  <el-affix :offset="120">
-    <el-button type="primary">Offset top 120px</el-button>
-  </el-affix>
+  <div>
+    <h1>测试</h1>
+    <router-link :to="{ name: 'Login' }">去login</router-link>
+    <router-link :to="{ name: 'Reg' }">去Reg</router-link>
 
-  <!-- <router-link to="/reg">去login</router-link> -->
-  <!-- <HelloWorld msg="Vite + Vue" /> -->
-  <!-- <router-view></router-view> -->
+  </div>
+  <router-view></router-view>
 
+  <!-- <el-menu
+    :default-active="activeIndex"
+    class="el-menu-demo"
+    mode="horizontal"
+    :ellipsis="false"
+    @select="handleSelect"
+  >
+    <el-menu-item index="0">LOGO</el-menu-item>
+    <div class="flex-grow" />
+    <el-menu-item index="1">Processing Center</el-menu-item>
+    <el-sub-menu index="2">
+      <template #title>Workspace</template>
+      <el-menu-item index="2-1">item one</el-menu-item>
+      <el-menu-item index="2-2">item two</el-menu-item>
+      <el-menu-item index="2-3">item three</el-menu-item>
+      <el-sub-menu index="2-4">
+        <template #title>item four</template>
+        <el-menu-item index="2-4-1">item one</el-menu-item>
+        <el-menu-item index="2-4-2">item two</el-menu-item>
+        <el-menu-item index="2-4-3">item three</el-menu-item>
+      </el-sub-menu>
+    </el-sub-menu>
+  </el-menu> -->
 </template>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-}
-
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+<style>
+.flex-grow {
+  flex-grow: 1;
 }
 </style>

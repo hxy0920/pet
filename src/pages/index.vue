@@ -1,5 +1,6 @@
 <template lang="">
     <div>
-        登录页
+       首页
+
     </div>
 </template>
