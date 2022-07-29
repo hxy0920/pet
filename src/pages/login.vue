@@ -17,16 +17,16 @@
         <span class="">账号密码登录</span>
         <span class="h-[1px] w-16 bg-gray-200"></span>
       </div>
-      <el-form :model="form" class="w-[250px]">
-        <el-form-item>
+      <el-form ref="formRef" :model="form" :rules="rules" class="w-[250px]">
+        <el-form-item prop="username">
           <el-input v-model="form.username" placeholder="请输入账号">
             <template #prefix>
               <el-icon><User /></el-icon>
             </template>
           </el-input>
         </el-form-item>
-        <el-form-item>
-          <el-input v-model="form.password" placeholder="请输入密码">
+        <el-form-item prop="password" >
+          <el-input v-model="form.password" type="password" show-password placeholder="请输入密码">
             <template #prefix>
               <el-icon><Lock /></el-icon>
             </template>
@@ -46,16 +46,38 @@
   </el-row>
 </template>
 <script lang="ts" setup>
-import { reactive } from "vue";
+import { reactive, ref } from "vue";
+import type { FormInstance, FormRules } from "element-plus";
 // do not use same name with ref
 const form = reactive({
   username: "",
   password: "",
 });
 
+const formRef = ref<FormInstance>()
+
+
 const onSubmit = () => {
+    formRef.value.validate((valid) => {
+        if(!valid) {
+            return false;
+        }
+        console.log("验证通过");
+    })
   console.log("submit!");
 };
+
+
+const rules = reactive<FormRules>({
+  username: [
+    { required: true, message: "请输入用户名", trigger: "blur" },
+    { min: 3, max: 5, message: "长度最短为 3 - 5 位", trigger: "blur" },
+  ],
+  password: [
+    { required: true, message: "请输入密码", trigger: "blur" },
+    { min: 3, max: 5, message: "长度最短为 3 - 5 位", trigger: "blur" },
+  ]
+});
 </script>
 <style>
 .login {
